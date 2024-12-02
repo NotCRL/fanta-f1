@@ -1,0 +1,21 @@
+.container-main {
+    background-color: #ebebeb;
+    min-height: 20vh;
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .logos {
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+
+    .text-copyright {
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 20px;
+    }
+}

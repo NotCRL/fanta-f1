@@ -1,0 +1,23 @@
+<nav class="navbar main navbar-expand-lg">
+    <div class="container-fluid">
+        <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_90,q_auto/f_auto/q_auto/content/dam/fom-website/subscribe-to-f1/f1_logo_fallback"
+            class="f1-logo" href="/home">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse menu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/classifica">Classifica</a>
+                </li>
+            </ul>
+            <div *ngIf="isLogging" class="login d-flex">
+                <span> {{userData.name}} {{userData.surname}}</span>
+            </div>
+        </div>
+    </div>
+</nav>
