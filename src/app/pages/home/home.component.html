@@ -1,4 +1,87 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Intestazione -->
+  <div class="header mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mb-0">Le Mie Competizioni</h1>
+      <button class="btn btn-primary" (click)="createNewLeague()">
+        <i class="bi bi-plus-circle me-2"></i>Nuova Competizione
+      </button>
+    </div>
+    <p class="text-muted mt-2">Gestisci le tue competizioni e unisciti a nuove leghe</p>
+  </div>
 
+  <!-- Stato di caricamento -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Caricamento...</span>
+    </div>
+    <p class="mt-3">Caricamento delle tue competizioni...</p>
+  </div>
 
-<!-- <button type="button" class="btn btn-primary" (click)="classifica()">Classifica</button> -->
+  <!-- Messaggio di errore -->
+  <div *ngIf="error && !isLoading" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ error }}
+    <button class="btn btn-sm btn-outline-danger ms-3" (click)="loadUserLeagues()">
+      <i class="bi bi-arrow-clockwise me-1"></i>Riprova
+    </button>
+  </div>
+
+  <!-- Lista competizioni -->
+  <div *ngIf="!isLoading && !error">
+    <!-- Nessuna competizione -->
+    <div *ngIf="leagues.length === 0" class="text-center py-5">
+      <div class="empty-state">
+        <i class="bi bi-trophy empty-state-icon"></i>
+        <h3>Nessuna competizione trovata</h3>
+        <p class="text-muted mb-4">Sembra che tu non abbia ancora nessuna competizione. Creane una nuova per iniziare!</p>
+        <button class="btn btn-primary" (click)="createNewLeague()">
+          <i class="bi bi-plus-circle me-2"></i>Crea la tua prima competizione
+        </button>
+      </div>
+    </div>
+
+    <!-- Griglia competizioni -->
+    <div *ngIf="leagues.length > 0" class="row g-4">
+      <div *ngFor="let league of leagues" class="col-12 col-md-6 col-lg-4">
+        <div class="league-card card h-100" (click)="navigateToLeague(league.id)">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h5 class="card-title mb-0">{{ league.name }}</h5>
+              <span class="badge" [ngClass]="getLeagueStatusClass(league.stato)">
+                {{ getLeagueStatusText(league.stato) }}
+              </span>
+            </div>
+            
+            <p class="card-text text-muted small mb-3" [title]="league.description">
+              {{ (league.description || 'Nessuna descrizione').substring(0, 100) }}{{ league.description && league.description.length > 100 ? '...' : '' }}
+            </p>
+            
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-people me-2"></i>
+                <span class="small">{{ league.maxTeams }} squadre</span>
+              </div>
+              <div class="text-muted small">
+                <i class="bi bi-calendar3 me-1"></i>
+                {{ league.inizioCampionato | date:'dd/MM/yyyy' }} - {{ league.fineCampionato | date:'dd/MM/yyyy' }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer bg-transparent border-top-0 pt-0">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="small text-muted">
+                <i class="bi bi-person-fill-gear me-1"></i>
+                Admin
+              </span>
+              <button class="btn btn-sm btn-outline-primary" (click)="$event.stopPropagation(); navigateToLeague(league.id)">
+                Vai alla lega <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

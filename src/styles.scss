@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 
 /* Global styles for sticky footer */
 :root {
@@ -10,30 +11,260 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Previene lo scroll globale */
-  position: fixed; /* Assicura che non ci sia scroll */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  overflow-x: hidden; /* Previene lo scroll orizzontale */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
-  position: relative;
+  flex: 1;
+  min-height: 0; /* Permette lo scorrimento del contenuto */
 }
 
 .main-content {
   flex: 1 0 auto;
   width: 100%;
   padding-bottom: 2rem; /* Spazio sopra il footer */
+  overflow-y: auto; /* Abilita lo scorrimento verticale */
+  -webkit-overflow-scrolling: touch; /* Scroll fluido su dispositivi touch */
 }
 
 app-footer {
   flex-shrink: 0;
   width: 100%;
 }
+
+/* Stili per i toast */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  pointer-events: none;
+  
+  /* Stili per i singoli toast */
+  > div {
+    position: relative;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+    opacity: 1 !important;
+    
+    /* Pulsante di chiusura */
+    .toast-close-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: inherit;
+      opacity: 0.8;
+      font-size: 16px;
+      line-height: 1;
+      padding: 4px;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    /* Icone per i diversi tipi di toast */
+    &:before {
+      font-family: 'bootstrap-icons';
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+    }
+    
+    /* Stili specifici per ogni tipo di toast */
+    &.toast-success {
+      background-color: #28a745 !important;
+      
+      &:before {
+        content: '\F26E'; /* Icona check-circle-fill */
+      }
+    }
+    
+    &.toast-error {
+      background-color: #dc3545 !important;
+      
+      &:before {
+        content: '\F2D7'; /* Icona x-circle-fill */
+      }
+    }
+    
+    &.toast-info {
+      background-color: #17a2b8 !important;
+      
+      &:before {
+        content: '\F430'; /* Icona info-circle-fill */
+      }
+    }
+    
+    &.toast-warning {
+      background-color: #ffc107 !important;
+      color: #212529;
+      
+      &:before {
+        content: '\F33A'; /* Icona exclamation-triangle-fill */
+      }
+    }
+    
+    /* Titolo e messaggio */
+    .toast-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .toast-message {
+      margin: 0;
+      word-wrap: break-word;
+    }
+  }
+}
+
+/* Nascondi il contenitore dei toast di default */
+.toast-container {
+  display: none;
+  
+  /* Posizionamento in basso a destra */
+  &.ngx-toastr--top-right {
+    top: 12px;
+    right: 12px;
+  }
+  
+  /* Stile base del toast */
+  .ngx-toastr {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 12px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 4px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    
+    /* Icone per i diversi tipi di toast */
+    &:before {
+      font-family: 'bootstrap-icons';
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+    }
+    
+    /* Stili specifici per ogni tipo di toast */
+    &.toast-success {
+      background-color: #28a745;
+      &:before {
+        content: '\F26E'; /* Icona check-circle-fill */
+      }
+    }
+    
+    &.toast-error {
+      background-color: #dc3545;
+      &:before {
+        content: '\F2D7'; /* Icona x-circle-fill */
+      }
+    }
+    
+    &.toast-info {
+      background-color: #17a2b8;
+      &:before {
+        content: '\F430'; /* Icona info-circle-fill */
+      }
+    }
+    
+    &.toast-warning {
+      background-color: #ffc107;
+      color: #212529;
+      &:before {
+        content: '\F33A'; /* Icona exclamation-triangle-fill */
+      }
+    }
+    
+    /* Pulsante di chiusura */
+    .toast-close-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: inherit;
+      opacity: 0.8;
+      font-size: 16px;
+      line-height: 1;
+      padding: 4px;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    /* Titolo e messaggio */
+    .toast-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .toast-message {
+      margin: 0;
+      word-wrap: break-word;
+    }
+  }
+  
+  /* Animazioni */
+  .toast {
+    opacity: 1;
+  }
+  
+  .toast.ng-enter {
+    animation: fadeIn 0.3s, slideInRight 0.3s;
+  }
+  
+  .toast.ng-leave {
+    animation: fadeOut 0.3s, slideOutRight 0.3s;
+  }
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

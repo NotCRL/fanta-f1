@@ -1,0 +1,365 @@
+.notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+
+  .notification-button {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    i {
+      font-size: 1.25rem;
+    }
+
+    &:hover {
+      background-color: #f3f4f6;
+      color: #4b5563;
+    }
+
+    &.active {
+      background-color: #ebf5ff;
+      color: #3b82f6;
+    }
+
+    &.has-unread {
+      color: #3b82f6;
+    }
+  }
+
+  .notification-badge {
+    position: absolute;
+    top: 0.125rem;
+    right: 0.125rem;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
+  }
+
+  .notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 24rem;
+    max-height: 32rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    overflow: hidden;
+  }
+
+  .notification-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9fafb;
+
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+
+  .notification-actions {
+    display: flex;
+    gap: 0.75rem;
+
+    button {
+      background: none;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:first-child {
+        color: #3b82f6;
+
+        &:hover {
+          background-color: #ebf5ff;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: none;
+        }
+      }
+
+      &:last-child {
+        color: #6b7280;
+
+        &:hover {
+          background-color: #f3f4f6;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: none;
+        }
+      }
+    }
+  }
+
+  .notification-body {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 28rem;
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+  }
+
+  .notification-loading,
+  .notification-error,
+  .no-notifications {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #6b7280;
+
+    .spinner {
+      width: 2rem;
+      height: 2rem;
+      border: 2px solid #e5e7eb;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 0.25rem 0 0;
+      font-size: 0.875rem;
+    }
+  }
+
+  .notification-error {
+    color: #dc2626;
+    padding: 1rem;
+    font-size: 0.875rem;
+    text-align: center;
+
+    i {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      margin-top: 0.5rem;
+      color: #3b82f6;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 0.875rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background-color: #ebf5ff;
+      }
+    }
+  }
+
+  .notification-item {
+    display: flex;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+
+    &.unread {
+      background-color: #f0f9ff;
+
+      &:hover {
+        background-color: #e0f2fe;
+      }
+    }
+
+    .notification-icon {
+      flex-shrink: 0;
+      margin-right: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      padding-top: 0.125rem;
+
+      i {
+        font-size: 1.125rem;
+
+        &.info {
+          color: #3b82f6;
+        }
+
+        &.warning {
+          color: #f59e0b;
+        }
+
+        &.success {
+          color: #10b981;
+        }
+
+        &.error {
+          color: #ef4444;
+        }
+
+        &.default {
+          color: #9ca3af;
+        }
+      }
+    }
+
+    .notification-content {
+      flex: 1;
+      min-width: 0;
+      margin-right: 0.5rem;
+    }
+
+    .notification-title {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #111827;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .notification-message {
+      margin: 0.25rem 0 0;
+      font-size: 0.875rem;
+      color: #4b5563;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .notification-time {
+      margin: 0.25rem 0 0;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-right: 0.25rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    .delete-button {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: #d1d5db;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.2s ease;
+
+      i {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        color: #ef4444;
+        background-color: #fee2e2;
+      }
+    }
+
+    &:hover .delete-button {
+      opacity: 1;
+    }
+  }
+
+  .no-notifications {
+    padding: 2rem 1rem;
+    color: #9ca3af;
+    text-align: center;
+
+    i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+
+    p {
+      margin: 0.25rem 0 0;
+      font-size: 0.875rem;
+
+      &:first-of-type {
+        font-weight: 500;
+        color: #4b5563;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

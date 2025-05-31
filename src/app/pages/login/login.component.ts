@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const video = this.bgVideo.nativeElement;
       video.muted = true;
       video.play().catch((error: Error) => {
-        console.warn('Auto-play was prevented:', error);
+        //console.warn('Auto-play was prevented:', error);
         // Riprova con un gestore di interazione utente
         const playOnClick = () => {
           video.play().then(() => {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     if (this.isBrowser) {
-      
+
       if (this.authService.isLoggedIn()) {
         this.router.navigate(['/home']);
       }
@@ -63,37 +63,37 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('[Login] onSubmit called');
+    //console.log('[Login] onSubmit called');
     if (!this.isBrowser) {
-      console.log('[Login] Not in browser environment');
+      //console.log('[Login] Not in browser environment');
       return;
     }
-    
+
     this.loading = true;
     this.error = '';
-    console.log('[Login] Calling authService.login');
+    //console.log('[Login] Calling authService.login');
 
     this.authService.login(this.username, this.password).subscribe({
       next: (success) => {
-        console.log('[Login] authService.login response:', success);
+        //console.log('[Login] authService.login response:', success);
         if (success) {
-          console.log('[Login] Login successful, navigating to /home');
+          //console.log('[Login] Login successful, navigating to /home');
           // Naviga alla home dopo il login riuscito
           this.router.navigate(['/home']).then(navResult => {
-            console.log('[Login] Navigation result:', navResult);
+            //console.log('[Login] Navigation result:', navResult);
             if (!navResult) {
               console.error('[Login] Navigation failed');
               this.error = 'Impossibile accedere alla home';
             }
           });
         } else {
-          console.log('[Login] Login failed: invalid credentials');
+          //console.log('[Login] Login failed: invalid credentials');
           this.error = 'Username o password non validi';
         }
         this.loading = false;
       },
       error: (error) => {
-        console.error('[Login] Login error:', error);
+        //console.error('[Login] Login error:', error);
         this.error = 'Si è verificato un errore durante il login';
         this.loading = false;
       }

@@ -3,11 +3,20 @@ import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { NotificationBellComponent } from '../../../shared/components/notification-bell/notification-bell.component';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    NotificationBellComponent,
+    NgbDropdownModule,
+    NgbModule
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -29,7 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.isBrowser) {
       this.user = this.authService.getCurrentUserSync();
       this.isLoggedIn = this.authService.isLoggedIn();
-      
+
       this.userSubscription = this.authService.currentUser.subscribe(user => {
         this.user = user;
         this.isLoggedIn = !!user;
@@ -39,8 +48,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   onLogout() {
     if (this.isBrowser) {
+      //('[NavbarComponent] Logout requested');
       this.authService.logout();
-      this.router.navigate(['/login']);
     }
   }
 

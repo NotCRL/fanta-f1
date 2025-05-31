@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "email": "admin@fantaf1.com",
       "password": "admin123",
@@ -9,7 +9,7 @@
       "createdAt": "2025-05-31T13:00:00.000Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "user1",
       "email": "user1@example.com",
       "password": "user123",
@@ -19,7 +19,7 @@
   ],
   "teams": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Red Bull Racing",
       "base": "Milton Keynes, Regno Unito",
       "teamChief": "Christian Horner",
@@ -29,7 +29,7 @@
       "logo": "assets/images/teams/redbull.png"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Ferrari",
       "base": "Maranello, Italia",
       "teamChief": "Frédéric Vasseur",
@@ -39,7 +39,7 @@
       "logo": "assets/images/teams/ferrari.png"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Mercedes",
       "base": "Brackley, Regno Unito",
       "teamChief": "Toto Wolff",
@@ -49,7 +49,7 @@
       "logo": "assets/images/teams/mercedes.png"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "McLaren",
       "base": "Woking, Regno Unito",
       "teamChief": "Andrea Stella",
@@ -59,7 +59,7 @@
       "logo": "assets/images/teams/mclaren.png"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Aston Martin",
       "base": "Silverstone, Regno Unito",
       "teamChief": "Mike Krack",
@@ -69,7 +69,7 @@
       "logo": "assets/images/teams/astonmartin.png"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Alpine",
       "base": "Enstone, Regno Unito",
       "teamChief": "Bruno Famin",
@@ -79,7 +79,7 @@
       "logo": "assets/images/teams/alpine.png"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Williams",
       "base": "Grove, Regno Unito",
       "teamChief": "James Vowles",
@@ -89,7 +89,7 @@
       "logo": "assets/images/teams/williams.png"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "AlphaTauri",
       "base": "Faenza, Italia",
       "teamChief": "Laurent Mekies",
@@ -99,7 +99,7 @@
       "logo": "assets/images/teams/alphatauri.png"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Alfa Romeo",
       "base": "Hinwil, Svizzera",
       "teamChief": "Alessandro Alunni Bravi",
@@ -109,7 +109,7 @@
       "logo": "assets/images/teams/alfaromeo.png"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Haas",
       "base": "Kannapolis, Stati Uniti",
       "teamChief": "Ayao Komatsu",
@@ -121,7 +121,7 @@
   ],
   "drivers": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Max Verstappen",
       "teamId": 1,
       "number": 1,
@@ -135,7 +135,7 @@
       "image": "assets/images/drivers/verstappen.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sergio Perez",
       "teamId": 1,
       "number": 11,
@@ -149,7 +149,7 @@
       "image": "assets/images/drivers/perez.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Charles Leclerc",
       "teamId": 2,
       "number": 16,
@@ -163,7 +163,7 @@
       "image": "assets/images/drivers/leclerc.jpg"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Carlos Sainz",
       "teamId": 2,
       "number": 55,
@@ -177,7 +177,7 @@
       "image": "assets/images/drivers/sainz.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Lewis Hamilton",
       "teamId": 3,
       "number": 44,
@@ -191,7 +191,7 @@
       "image": "assets/images/drivers/hamilton.jpg"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "George Russell",
       "teamId": 3,
       "number": 63,
@@ -205,7 +205,7 @@
       "image": "assets/images/drivers/russell.jpg"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Lando Norris",
       "teamId": 4,
       "number": 4,
@@ -219,7 +219,7 @@
       "image": "assets/images/drivers/norris.jpg"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Oscar Piastri",
       "teamId": 4,
       "number": 81,
@@ -233,7 +233,7 @@
       "image": "assets/images/drivers/piastri.jpg"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Fernando Alonso",
       "teamId": 5,
       "number": 14,
@@ -247,7 +247,7 @@
       "image": "assets/images/drivers/alonso.jpg"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Lance Stroll",
       "teamId": 5,
       "number": 18,
@@ -261,7 +261,7 @@
       "image": "assets/images/drivers/stroll.jpg"
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Pierre Gasly",
       "teamId": 6,
       "number": 10,
@@ -275,7 +275,7 @@
       "image": "assets/images/drivers/gasly.jpg"
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Esteban Ocon",
       "teamId": 6,
       "number": 31,
@@ -289,7 +289,7 @@
       "image": "assets/images/drivers/ocon.jpg"
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "Alexander Albon",
       "teamId": 7,
       "number": 23,
@@ -303,7 +303,7 @@
       "image": "assets/images/drivers/albon.jpg"
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "Logan Sargeant",
       "teamId": 7,
       "number": 2,
@@ -317,7 +317,7 @@
       "image": "assets/images/drivers/sargeant.jpg"
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "Yuki Tsunoda",
       "teamId": 8,
       "number": 22,
@@ -331,7 +331,7 @@
       "image": "assets/images/drivers/tsunoda.jpg"
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "Daniel Ricciardo",
       "teamId": 8,
       "number": 3,
@@ -345,7 +345,7 @@
       "image": "assets/images/drivers/ricciardo.jpg"
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Valtteri Bottas",
       "teamId": 9,
       "number": 77,
@@ -359,7 +359,7 @@
       "image": "assets/images/drivers/bottas.jpg"
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Zhou Guanyu",
       "teamId": 9,
       "number": 24,
@@ -373,7 +373,7 @@
       "image": "assets/images/drivers/zhou.jpg"
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "Kevin Magnussen",
       "teamId": 10,
       "number": 20,
@@ -387,7 +387,7 @@
       "image": "assets/images/drivers/magnussen.jpg"
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "Nico Hülkenberg",
       "teamId": 10,
       "number": 27,
@@ -403,7 +403,7 @@
   ],
   "races": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Bahrain Grand Prix",
       "circuit": "Bahrain International Circuit",
       "date": "2025-03-02",
@@ -411,7 +411,7 @@
       "sprintRace": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Saudi Arabian Grand Prix",
       "circuit": "Jeddah Corniche Circuit",
       "date": "2025-03-09",
@@ -419,7 +419,7 @@
       "sprintRace": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Australian Grand Prix",
       "circuit": "Albert Park Circuit",
       "date": "2025-03-23",
@@ -429,7 +429,7 @@
   ],
   "driverStandings": [
     {
-      "id": 1,
+      "id": "1",
       "position": 1,
       "points": 0,
       "wins": 0,
@@ -453,7 +453,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "position": 2,
       "points": 0,
       "wins": 0,
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "position": 3,
       "points": 0,
       "wins": 0,
@@ -501,7 +501,252 @@
       ]
     }
   ],
-  "fantasyTeams": [],
-  "fantasyTeamDrivers": [],
-  "fantasyTeamResults": []
+  "fantasyLeagues": [
+    {
+      "id": "1",
+      "name": "Fanta F1 2025 Campionato",
+      "description": "Campionato ufficiale Fanta F1 2025",
+      "maxTeams": 10,
+      "budgetIniziale": 100,
+      "adminId": 1,
+      "isPrivate": false,
+      "inviteCode": "F1-2025-123",
+      "stato": "draft",
+      "regole": {
+        "puntiPolePosition": 3,
+        "puntiGiroVeloce": 2,
+        "puntiPoleSprint": 2,
+        "puntiPodioSprint": [
+          5,
+          3,
+          1
+        ],
+        "puntiPosizioneGara": [
+          25,
+          18,
+          15,
+          12,
+          10,
+          8,
+          6,
+          4,
+          2,
+          1
+        ],
+        "puntiGiroVeloceGara": 1,
+        "bonusPoleELapida": 3,
+        "bonusPilotaDelGiorno": 5,
+        "bonusCostruttoreDelGiorno": 5,
+        "sosteObbligatorie": true,
+        "danniMeccanici": true,
+        "sanzioni": true
+      },
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "inizioCampionato": "2025-03-02T00:00:00.000Z",
+      "fineCampionato": "2025-11-30T23:59:59.999Z"
+    },
+    {
+      "id": "1748708687497",
+      "name": "prova",
+      "description": "lega di prova",
+      "maxTeams": 8,
+      "budgetIniziale": 100,
+      "isPrivate": false,
+      "inizioCampionato": "2025-06-01",
+      "fineCampionato": "2026-01-31",
+      "adminId": "1",
+      "stato": "draft",
+      "regole": {
+        "puntiPolePosition": 5,
+        "puntiGiroVeloce": 2,
+        "puntiPoleSprint": 3,
+        "puntiPodioSprint": [
+          5,
+          3,
+          1
+        ],
+        "puntiPosizioneGara": [
+          25,
+          18,
+          15,
+          12,
+          10,
+          8,
+          6,
+          4,
+          2,
+          1
+        ],
+        "puntiGiroVeloceGara": 1,
+        "bonusPoleELapida": 3,
+        "bonusPilotaDelGiorno": 5,
+        "bonusCostruttoreDelGiorno": 5,
+        "sosteObbligatorie": true,
+        "danniMeccanici": true,
+        "sanzioni": true
+      },
+      "inviteCode": "F1-MBCG02VD",
+      "createdAt": "2025-05-31T16:24:47.497Z"
+    }
+  ],
+  "fantasyTeams": [
+    {
+      "id": "1",
+      "name": "Red Bull Racing",
+      "ownerId": 1,
+      "leagueId": 1,
+      "budget": 80,
+      "puntiTotali": 0,
+      "puntiUltimaGara": 0,
+      "posizioneClassifica": 0,
+      "vittorie": 0,
+      "podi": 0,
+      "puntiPolePosition": 0,
+      "puntiGiroVeloce": 0,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "name": "Scuderia Ferrari",
+      "ownerId": 2,
+      "leagueId": 1,
+      "budget": 75,
+      "puntiTotali": 0,
+      "puntiUltimaGara": 0,
+      "posizioneClassifica": 0,
+      "vittorie": 0,
+      "podi": 0,
+      "puntiPolePosition": 0,
+      "puntiGiroVeloce": 0,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "fantasyTeamDrivers": [
+    {
+      "id": "1",
+      "teamId": 1,
+      "driverId": 1,
+      "isTitolare": true,
+      "acquistatoPer": 30,
+      "valoreAttuale": 32,
+      "puntiTotali": 0,
+      "puntiUltimaGara": 0,
+      "vittorie": 0,
+      "podi": 0,
+      "puntiPolePosition": 0,
+      "puntiGiroVeloce": 0,
+      "dataAcquisto": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "teamId": 2,
+      "driverId": 16,
+      "isTitolare": true,
+      "acquistatoPer": 28,
+      "valoreAttuale": 30,
+      "puntiTotali": 0,
+      "puntiUltimaGara": 0,
+      "vittorie": 0,
+      "podi": 0,
+      "puntiPolePosition": 0,
+      "puntiGiroVeloce": 0,
+      "dataAcquisto": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "fantasyTeamResults": [],
+  "auctions": [
+    {
+      "id": "1",
+      "leagueId": 1,
+      "driverId": 5,
+      "stato": "in_corso",
+      "offertaAttuale": 25,
+      "offerenteAttualeId": 1,
+      "dataInizio": "2025-02-20T20:00:00.000Z",
+      "dataFine": "2025-02-20T21:00:00.000Z",
+      "offerte": [
+        {
+          "teamId": 1,
+          "importo": 25,
+          "data": "2025-02-20T20:30:00.000Z"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": 1,
+      "tipo": "offerta_superata",
+      "titolo": "Offerta superata!",
+      "messaggio": "La tua offerta per Max Verstappen è stata superata da un altro team.",
+      "letta": false,
+      "data": "2025-02-20T20:35:00.000Z",
+      "link": "/auction/1"
+    },
+    {
+      "id": "2",
+      "userId": 1,
+      "tipo": "piazzamento_formazione",
+      "titolo": "Formazione confermata",
+      "messaggio": "La tua formazione per il GP del Bahrein è stata confermata con successo.",
+      "letta": true,
+      "data": "2025-02-28T18:45:00.000Z",
+      "link": "/team/1/race/1"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "1",
+      "leagueId": 1,
+      "tipo": "acquisto",
+      "stato": "completato",
+      "driverId": 1,
+      "importo": 30,
+      "data": "2025-01-15T14:30:00.000Z",
+      "approvatoDa": [
+        2,
+        3,
+        4
+      ],
+      "richiedeApprovazione": false
+    }
+  ],
+  "leagueMembers": [
+    {
+      "id": "1",
+      "leagueId": 1,
+      "userId": 1,
+      "ruolo": "admin",
+      "dataIscrizione": "2025-01-01T00:00:00.000Z",
+      "stato": "attivo"
+    },
+    {
+      "id": "2",
+      "leagueId": 1,
+      "userId": 2,
+      "ruolo": "membro",
+      "dataIscrizione": "2025-01-02T10:30:00.000Z",
+      "stato": "attivo"
+    }
+  ],
+  "raceLineups": [
+    {
+      "id": "1",
+      "teamId": 1,
+      "raceId": 1,
+      "pilotiTitolari": [
+        1,
+        2
+      ],
+      "pilotiRiserva": [
+        3
+      ],
+      "puntiTotali": 0,
+      "bonusPilotaDelGiorno": false,
+      "bonusCostruttoreDelGiorno": false,
+      "dataConferma": "2025-03-01T18:30:00.000Z",
+      "ultimaModifica": "2025-03-01T18:30:00.000Z"
+    }
+  ]
 }

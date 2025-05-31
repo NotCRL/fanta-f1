@@ -26,13 +26,28 @@
       </ul>
       
       <div class="d-flex align-items-center" *ngIf="isLoggedIn">
-        <span class="text-light me-3">
-          <i class="bi bi-person-circle me-1"></i>
-          {{ user?.username || 'Utente' }}
-        </span>
-        <button class="btn btn-outline-light btn-sm" (click)="onLogout()">
-          <i class="bi bi-box-arrow-right me-1"></i> Logout
-        </button>
+        <!-- Notifiche -->
+        <div class="me-3">
+          <app-notification-bell></app-notification-bell>
+        </div>
+        
+        <!-- Profilo utente -->
+        <div ngbDropdown class="d-inline-block" placement="bottom-end">
+          <button class="btn btn-link text-light text-decoration-none d-flex align-items-center" 
+                  type="button" id="userDropdown" ngbDropdownToggle>
+            <i class="bi bi-person-circle me-1"></i>
+            {{ user?.username || 'Utente' }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-end">
+            <a ngbDropdownItem [routerLink]="['/profilo']" class="dropdown-item">
+              <i class="bi bi-person me-2"></i>Profilo
+            </a>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onLogout()" class="dropdown-item">
+              <i class="bi bi-box-arrow-right me-2"></i>Logout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

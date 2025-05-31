@@ -1,0 +1,285 @@
+<!-- Loading State -->
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+  <div class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Caricamento...</span>
+    </div>
+    <p class="mt-3">Caricamento dettagli lega...</p>
+  </div>
+</div>
+
+<!-- Error State -->
+<div *ngIf="!isLoading && error" class="alert alert-danger m-4" role="alert">
+  <i class="bi bi-exclamation-triangle-fill me-2"></i>
+  {{ error }}
+  <button class="btn btn-sm btn-outline-secondary ms-3" routerLink="/home">Torna alla home</button>
+</div>
+
+<!-- League Details -->
+<div *ngIf="!isLoading && league" class="league-details">
+  <!-- Header Section -->
+  <div class="league-header" [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))', 'background-size': 'cover'}">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="d-flex align-items-center mb-3">
+            <h1 class="display-5 fw-bold text-white mb-0">{{ league.name }}</h1>
+            <span class="badge ms-3" [ngClass]="getStatusBadgeClass()">
+              {{ getStatusText() }}
+            </span>
+          </div>
+          <p class="lead text-white-50 mb-4">{{ league.description || 'Nessuna descrizione fornita' }}</p>
+          
+          <div class="d-flex flex-wrap gap-3">
+            <div class="d-flex align-items-center text-white">
+              <i class="bi bi-people-fill me-2"></i>
+              <span>{{ league.maxTeams }} squadre massime</span>
+            </div>
+            <div class="d-flex align-items-center text-white">
+              <i class="bi bi-cash-coin me-2"></i>
+              <span>Budget: {{ league.budgetIniziale }}M €</span>
+            </div>
+            <div class="d-flex align-items-center text-white">
+              <i class="bi bi-lock-fill me-2" *ngIf="league.isPrivate"></i>
+              <i class="bi bi-unlock-fill me-2" *ngIf="!league.isPrivate"></i>
+              <span>{{ league.isPrivate ? 'Privata' : 'Pubblica' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mt-4 mt-md-0">
+          <div class="card bg-dark bg-opacity-50 text-white border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title">Codice Invito</h5>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control bg-dark text-white border-secondary text-center" 
+                       [value]="league.inviteCode" readonly>
+                <button class="btn btn-outline-light" type="button" (click)="copyInviteCode()">
+                  <i class="bi bi-clipboard"></i>
+                </button>
+              </div>
+              <p class="small text-muted mb-0">Condividi questo codice per far unire altri giocatori</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div *ngIf="getDaysToEnd()" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between mb-1">
+            <small>Iniziato il {{ formatDate(league.inizioCampionato) }}</small>
+            <small>Mancano {{ getDaysToEnd()?.days }} giorni</small>
+            <small>Termina il {{ formatDate(league.fineCampionato) }}</small>
+          </div>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-primary" role="progressbar" 
+                 [style.width.%]="getDaysToEnd()?.percentage" 
+                 [attr.aria-valuenow]="getDaysToEnd()?.percentage" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="bg-white border-bottom">
+    <div class="container">
+      <ul ngbNav #nav="ngbNav" class="nav-tabs" [activeId]="activeTab">
+        <li [ngbNavItem]="'info'">
+          <a ngbNavLink (click)="activeTab = 'info'">
+            <i class="bi bi-info-circle me-1"></i> Informazioni
+          </a>
+        </li>
+        <li [ngbNavItem]="'classifica'">
+          <a ngbNavLink (click)="activeTab = 'classifica'">
+            <i class="bi bi-trophy me-1"></i> Classifica
+          </a>
+        </li>
+        <li [ngbNavItem]="'squadre'">
+          <a ngbNavLink (click)="activeTab = 'squadre'">
+            <i class="bi bi-people-fill me-1"></i> Squadre
+          </a>
+        </li>
+        <li [ngbNavItem]="'gare'" *ngIf="league.stato !== 'draft'">
+          <a ngbNavLink (click)="activeTab = 'gare'">
+            <i class="bi bi-flag-fill me-1"></i> Gare
+          </a>
+        </li>
+        <li [ngbNavItem]="'impostazioni'" *ngIf="isAdmin">
+          <a ngbNavLink (click)="activeTab = 'impostazioni'">
+            <i class="bi bi-gear-fill me-1"></i> Impostazioni
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="container py-4">
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    
+    <div *ngIf="activeTab === 'info'" class="tab-pane fade show active">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Regole del campionato</h5>
+              <div class="table-responsive">
+                <table class="table table-borderless">
+                  <tbody>
+                    <tr>
+                      <th scope="row" style="width: 60%;">Punti per la Pole Position</th>
+                      <td class="text-end">{{ league.regole.puntiPolePosition }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Punti per il Giro Veloce</th>
+                      <td class="text-end">{{ league.regole.puntiGiroVeloce }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Punti per la Pole Sprint</th>
+                      <td class="text-end">{{ league.regole.puntiPoleSprint }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Punti per il podio Sprint (1°-2°-3°)</th>
+                      <td class="text-end">
+                        {{ league.regole.puntiPodioSprint[0] }} - 
+                        {{ league.regole.puntiPodioSprint[1] }} - 
+                        {{ league.regole.puntiPodioSprint[2] }} pt
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Punti Giro Veloce in Gara</th>
+                      <td class="text-end">{{ league.regole.puntiGiroVeloceGara }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bonus Pole + Giro Veloce</th>
+                      <td class="text-end">{{ league.regole.bonusPoleELapida }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bonus Pilota del Giorno</th>
+                      <td class="text-end">{{ league.regole.bonusPilotaDelGiorno }} pt</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Bonus Costruttore del Giorno</th>
+                      <td class="text-end">{{ league.regole.bonusCostruttoreDelGiorno }} pt</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <h5 class="card-title mt-4">Altre Regole</h5>
+              <div class="d-flex flex-wrap gap-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [checked]="league.regole.sosteObbligatorie" disabled>
+                  <label class="form-check-label">Soste obbligatorie</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [checked]="league.regole.danniMeccanici" disabled>
+                  <label class="form-check-label">Danni meccanici casuali</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [checked]="league.regole.sanzioni" disabled>
+                  <label class="form-check-label">Sanzioni per incidenti</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <!-- Admin Actions -->
+          <div *ngIf="isAdmin" class="card mb-4">
+            <div class="card-header bg-light">
+              <h6 class="mb-0">Azioni Amministratore</h6>
+            </div>
+            <div class="card-body">
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary" (click)="editLeague()">
+                  <i class="bi bi-pencil-square me-2"></i>Modifica Lega
+                </button>
+                
+                <button *ngIf="league.stato === 'draft'" class="btn btn-success" (click)="startChampionship()">
+                  <i class="bi bi-play-fill me-2"></i>Avvia Campionato
+                </button>
+                
+                <button *ngIf="league.stato === 'in_corso'" class="btn btn-warning" (click)="endChampionship()">
+                  <i class="bi bi-flag-fill me-2"></i>Termina Campionato
+                </button>
+                
+                <button class="btn btn-outline-danger">
+                  <i class="bi bi-trash me-2"></i>Elimina Lega
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- League Info -->
+          <div class="card mb-4">
+            <div class="card-header bg-light">
+              <h6 class="mb-0">Informazioni Lega</h6>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <span><i class="bi bi-calendar-event me-2"></i>Data creazione</span>
+                  <span class="text-muted">{{ formatDate(league.createdAt) }}</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <span><i class="bi bi-flag me-2"></i>Inizio Campionato</span>
+                  <span class="text-muted">{{ formatDate(league.inizioCampionato) }}</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <span><i class="bi bi-flag-fill me-2"></i>Fine Campionato</span>
+                  <span class="text-muted">{{ formatDate(league.fineCampionato) }}</span>
+                </li>
+                <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                  <span><i class="bi bi-people me-2"></i>Squadre Iscritte</span>
+                  <span class="badge bg-primary rounded-pill">0/{{ league.maxTeams }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Share Buttons -->
+          <div class="card">
+            <div class="card-header bg-light">
+              <h6 class="mb-0">Condividi</h6>
+            </div>
+            <div class="card-body">
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary flex-grow-1">
+                  <i class="bi bi-facebook me-2"></i>Facebook
+                </button>
+                <button class="btn btn-outline-info flex-grow-1">
+                  <i class="bi bi-twitter-x me-2"></i>Twitter
+                </button>
+                <button class="btn btn-outline-success flex-grow-1">
+                  <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Other Tabs Content -->
+    <div *ngIf="activeTab !== 'info'" class="tab-content mt-4">
+      <div class="text-center py-5">
+        <div class="display-1 text-muted mb-4">
+          <i class="bi bi-tools"></i>
+        </div>
+        <h2>Pagina in costruzione</h2>
+        <p class="lead">Questa sezione è attualmente in fase di sviluppo. Torna presto per vedere le novità!</p>
+      </div>
+    </div>
+  </div>
+</div>

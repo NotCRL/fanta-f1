@@ -5,6 +5,8 @@ import { ClassificaComponent } from './pages/classifica/classifica.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AuthService } from './core/services/auth.service';
+import { LeagueDetailsComponent } from './pages/league-details/league-details.component';
+import { CreateLeagueComponent } from './pages/create-league/create-league.component';
 
 export const routes: Routes = [
   { 
@@ -16,6 +18,16 @@ export const routes: Routes = [
     path: 'home', 
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), 
     canActivate: [AuthGuard] 
+  },
+  {
+    path: 'lega/:id',
+    loadComponent: () => import('./pages/league-details/league-details.component').then(m => m.LeagueDetailsComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'crea-lega',
+    loadComponent: () => import('./pages/create-league/create-league.component').then(m => m.CreateLeagueComponent),
+    canActivate: [AuthGuard]
   },
   { 
     path: 'classifica', 

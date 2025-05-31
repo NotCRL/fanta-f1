@@ -1,0 +1,125 @@
+<div class="notification-bell">
+  <!-- Pulsante campanella notifiche -->
+  <button 
+    (click)="toggleNotifications()" 
+    class="notification-button"
+    [class.has-unread]="hasUnreadNotifications"
+    [class.active]="showNotifications"
+    aria-label="Notifiche"
+    [attr.aria-expanded]="showNotifications"
+  >
+    <i class="bi bi-bell"></i>
+    <span 
+      *ngIf="unreadCount > 0"
+      class="notification-badge"
+      [attr.aria-label]="unreadCount + ' notifiche non lette'"
+    >
+      {{ unreadCount }}
+    </span>
+  </button>
+
+  <!-- Dropdown notifiche -->
+  <div 
+    *ngIf="showNotifications"
+    class="notification-dropdown"
+  >
+    <!-- Intestazione dropdown -->
+    <div class="notification-header">
+      <h3>Notifiche</h3>
+      <div class="notification-actions">
+        <button 
+          (click)="markAllAsRead()" 
+          [disabled]="unreadCount === 0 || isLoading"
+          aria-label="Segna tutte come lette"
+        >
+          Segna tutte
+        </button>
+        <button 
+          (click)="clearReadNotifications()" 
+          [disabled]="notifications.length === 0 || isLoading || unreadCount === notifications.length"
+          aria-label="Cancella notifiche lette"
+        >
+          Pulisci lette
+        </button>
+      </div>
+    </div>
+    
+    <!-- Corpo dropdown -->
+    <div class="notification-body" aria-live="polite">
+      <!-- Stato di caricamento -->
+      <div *ngIf="isLoading" class="notification-loading">
+        <div class="spinner"></div>
+        <p>Caricamento notifiche...</p>
+      </div>
+      
+      <!-- Messaggio di errore -->
+      <div *ngIf="error && !isLoading" class="notification-error">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        {{ error }}
+        <button 
+          (click)="loadNotifications()" 
+          aria-label="Riprova"
+        >
+          Riprova
+        </button>
+      </div>
+      
+      <!-- Lista notifiche -->
+      <ng-container *ngIf="!isLoading && !error">
+        <div 
+          *ngFor="let notification of notifications; trackBy: trackByNotificationId"
+          (click)="markAsRead(notification)"
+          class="notification-item"
+          [class.unread]="!notification.letta"
+          [routerLink]="notification.link"
+          [attr.aria-label]="notification.titolo + (notification.letta ? '' : ', non letta')"
+          role="button"
+        >
+          <!-- Icona notifica -->
+          <div class="notification-icon">
+            <i 
+              [ngClass]="{
+                'bi-info-circle-fill info': notification.tipo === 'info',
+                'bi-exclamation-triangle-fill warning': notification.tipo === 'warning',
+                'bi-check-circle-fill success': notification.tipo === 'success',
+                'bi-x-circle-fill error': notification.tipo === 'error',
+                'bi-bell-fill default': true
+              }"
+              aria-hidden="true"
+            ></i>
+          </div>
+          
+          <!-- Contenuto notifica -->
+          <div class="notification-content">
+            <p class="notification-title">
+              {{ notification.titolo }}
+            </p>
+            <p class="notification-message">
+              {{ notification.messaggio }}
+            </p>
+            <p class="notification-time">
+              <i class="bi bi-clock"></i>
+              {{ notification.data | date:'dd/MM/yyyy HH:mm' }}
+            </p>
+          </div>
+          
+          <!-- Pulsante elimina -->
+          <button 
+            (click)="$event.stopPropagation(); deleteNotification(notification.id)"
+            class="delete-notification"
+            aria-label="Elimina notifica"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        
+        <!-- Nessuna notifica -->
+        <div *ngIf="notifications.length === 0" class="no-notifications">
+          <i class="bi bi-bell-slash"></i>
+          <p>Nessuna notifica</p>
+          <p>Le nuove notifiche appariranno qui</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

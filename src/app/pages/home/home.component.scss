@@ -1,0 +1,128 @@
+// Stili per la pagina home
+.home-container {
+  padding: 2rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  .header {
+    padding: 0 1.5rem;
+    
+    h1 {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+  }
+  
+  .empty-state {
+    padding: 3rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      color: #6c757d;
+      margin-bottom: 1rem;
+    }
+    
+    h3 {
+      color: #343a40;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .league-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e9ecef;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.5rem;
+    }
+    
+    .card-title {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .card-text {
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 3;
+      max-height: 4.5em;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35em 0.65em;
+      border-radius: 0.5rem;
+      
+      &.status-in-progress {
+        background-color: #d1e7dd;
+        color: #0f5132;
+      }
+      
+      &.status-finished {
+        background-color: #f8d7da;
+        color: #842029;
+      }
+      
+      &.status-draft {
+        background-color: #fff3cd;
+        color: #664d03;
+      }
+    }
+    
+    .card-footer {
+      padding: 0 1.5rem 1.5rem;
+      background-color: transparent;
+      
+      .btn {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+      }
+    }
+  }
+}
+
+// Stili per schermi piccoli
+@media (max-width: 767.98px) {
+  .home-container {
+    padding: 1rem;
+    
+    .header {
+      padding: 0;
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+    }
+    
+    .league-card {
+      .card-body {
+        padding: 1.25rem;
+      }
+      
+      .card-footer {
+        padding: 0 1.25rem 1.25rem;
+      }
+    }
+  }
+}

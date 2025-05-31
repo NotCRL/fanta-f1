@@ -1,0 +1,155 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h5 mb-0">Crea una nuova lega</h2>
+        </div>
+        <div class="card-body">
+          <!-- Messaggio di successo -->
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            <i class="bi bi-check-circle me-2"></i> Lega creata con successo! Stai per essere reindirizzato...
+          </div>
+
+          <!-- Messaggio di errore -->
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            <i class="bi bi-exclamation-triangle me-2"></i> {{ error }}
+          </div>
+
+          <form [formGroup]="leagueForm" (ngSubmit)="onSubmit()" *ngIf="!success">
+            <!-- Sezione informazioni base -->
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Informazioni base</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Nome lega *</label>
+                  <input type="text" class="form-control" id="name" formControlName="name"
+                         [ngClass]="{'is-invalid': leagueForm.get('name')?.invalid && leagueForm.get('name')?.touched}">
+                  <div class="invalid-feedback">
+                    Inserisci un nome valido (3-50 caratteri).
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="maxTeams" class="form-label">Numero massimo di squadre *</label>
+                  <input type="number" class="form-control" id="maxTeams" formControlName="maxTeams"
+                         [ngClass]="{'is-invalid': leagueForm.get('maxTeams')?.invalid && leagueForm.get('maxTeams')?.touched}">
+                  <div class="invalid-feedback">
+                    Inserisci un numero tra 2 e 20.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="description" class="form-label">Descrizione</label>
+                  <textarea class="form-control" id="description" rows="3" formControlName="description"
+                            [ngClass]="{'is-invalid': leagueForm.get('description')?.invalid && leagueForm.get('description')?.touched}"></textarea>
+                  <div class="form-text">Massimo 500 caratteri</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sezione date -->
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Date del campionato</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="inizioCampionato" class="form-label">Data inizio *</label>
+                  <input type="date" class="form-control" id="inizioCampionato" formControlName="inizioCampionato"
+                         [min]="today"
+                         [ngClass]="{'is-invalid': leagueForm.get('inizioCampionato')?.invalid && leagueForm.get('inizioCampionato')?.touched}">
+                </div>
+                <div class="col-md-6">
+                  <label for="fineCampionato" class="form-label">Data fine *</label>
+                  <input type="date" class="form-control" id="fineCampionato" formControlName="fineCampionato"
+                         [min]="leagueForm.get('inizioCampionato')?.value || today"
+                         [ngClass]="{'is-invalid': leagueForm.get('fineCampionato')?.invalid && leagueForm.get('fineCampionato')?.touched}">
+                </div>
+              </div>
+            </div>
+
+            <!-- Sezione regole avanzate -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h5 mb-0">Regole avanzate</h3>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="showAdvanced = !showAdvanced">
+                  {{ showAdvanced ? 'Nascondi' : 'Mostra' }}
+                </button>
+              </div>
+
+              <div class="collapse" [ngbCollapse]="!showAdvanced">
+                <div class="card card-body mb-3">
+                  <h4 class="h6 mb-3">Punteggi</h4>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label for="puntiPolePosition" class="form-label">Punti Pole Position</label>
+                      <input type="number" class="form-control" id="puntiPolePosition" formControlName="puntiPolePosition">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="puntiGiroVeloce" class="form-label">Punti Giro Veloce</label>
+                      <input type="number" class="form-control" id="puntiGiroVeloce" formControlName="puntiGiroVeloce">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="puntiPoleSprint" class="form-label">Punti Pole Sprint</label>
+                      <input type="number" class="form-control" id="puntiPoleSprint" formControlName="puntiPoleSprint">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Punti Posizione Gara</label>
+                      <div class="d-flex flex-wrap gap-2">
+                        <div class="input-group input-group-sm" style="width: 120px;" *ngFor="let point of [1,2,3,4,5,6,7,8,9,10]; let i = index">
+                          <span class="input-group-text">P{{i+1}}</span>
+                          <input type="number" class="form-control" [formControlName]="'puntiPosizioneGara'" [value]="leagueForm.get('puntiPosizioneGara')?.value[i]" (change)="updatePuntiPosizione($event, i)">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4 class="h6 mt-4 mb-3">Bonus</h4>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label for="bonusPoleELapida" class="form-label">Bonus Pole + Giro Veloce</label>
+                      <input type="number" class="form-control" id="bonusPoleELapida" formControlName="bonusPoleELapida">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="bonusPilotaDelGiorno" class="form-label">Bonus Pilota del Giorno</label>
+                      <input type="number" class="form-control" id="bonusPilotaDelGiorno" formControlName="bonusPilotaDelGiorno">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="bonusCostruttoreDelGiorno" class="form-label">Bonus Costruttore del Giorno</label>
+                      <input type="number" class="form-control" id="bonusCostruttoreDelGiorno" formControlName="bonusCostruttoreDelGiorno">
+                    </div>
+                  </div>
+
+                  <h4 class="h6 mt-4 mb-3">Altre regole</h4>
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="sosteObbligatorie" formControlName="sosteObbligatorie">
+                    <label class="form-check-label" for="sosteObbligatorie">Soste obbligatorie</label>
+                  </div>
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="danniMeccanici" formControlName="danniMeccanici">
+                    <label class="form-check-label" for="danniMeccanici">Danni meccanici casuali</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="sanzioni" formControlName="sanzioni">
+                    <label class="form-check-label" for="sanzioni">Sanzioni per incidenti</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pulsanti di azione -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-outline-secondary" (click)="onCancel()" [disabled]="isLoading">
+                <i class="bi bi-x-lg me-1"></i> Annulla
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="leagueForm.invalid || isLoading">
+                <span *ngIf="!isLoading">
+                  <i class="bi bi-plus-lg me-1"></i> Crea Lega
+                </span>
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                <span *ngIf="isLoading">Creazione in corso...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
