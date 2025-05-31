@@ -9,12 +9,12 @@ import { AuthService } from './core/services/auth.service';
 export const routes: Routes = [
   { 
     path: '', 
-    redirectTo: 'login', 
+    redirectTo: 'home', 
     pathMatch: 'full' 
   },
   { 
     path: 'home', 
-    component: HomeComponent, 
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), 
     canActivate: [AuthGuard] 
   },
   { 
@@ -24,19 +24,32 @@ export const routes: Routes = [
   },
   { 
     path: 'login', 
-    component: LoginComponent,
+    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
     canActivate: [() => {
       const authService = inject(AuthService);
       const router = inject(Router);
+      
       if (authService.isLoggedIn()) {
-        router.navigate(['/home']);
-        return false;
+        return router.navigate(['/home']);
+      }
+      return true;
+    }]
+  },
+  { 
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent),
+    canActivate: [() => {
+      const authService = inject(AuthService);
+      const router = inject(Router);
+      
+      if (authService.isLoggedIn()) {
+        return router.navigate(['/home']);
       }
       return true;
     }]
   },
   { 
     path: '**', 
-    redirectTo: 'login' 
+    redirectTo: 'home' 
   }
 ];

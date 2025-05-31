@@ -18,15 +18,24 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
+    console.log('[AuthGuard] canActivate called');
     if (!this.isBrowser) {
+      console.log('[AuthGuard] Not in browser environment, allowing access');
       return true;
     }
 
-    if (this.authService.isLoggedIn()) {
+    const isLoggedIn = this.authService.isLoggedIn();
+    console.log('[AuthGuard] isLoggedIn:', isLoggedIn);
+
+    if (isLoggedIn) {
+      console.log('[AuthGuard] User is authenticated, allowing access');
       return true;
     }
     
-    this.router.navigate(['/login']);
+    console.log('[AuthGuard] User not authenticated, redirecting to login');
+    this.router.navigate(['/login']).then(navResult => {
+      console.log('[AuthGuard] Navigation to /login result:', navResult);
+    });
     return false;
   }
 }

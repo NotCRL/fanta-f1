@@ -1,13 +1,20 @@
-<div class="login-container">
-  <form (ngSubmit)="onSubmit()" class="login-form" #loginForm="ngForm">
+<div class="login-page">
+  <video autoplay muted loop playsinline class="bg-video" #bgVideo>
+    <source src="assets/videoplayback.mp4" type="video/mp4">
+    Il tuo browser non supporta i video HTML5.
+  </video>
+  <div class="video-overlay"></div>
+  
+  <div class="login-container">
+    <form (ngSubmit)="onSubmit()" class="login-form" #loginForm="ngForm">
     <h2>Accedi al tuo account</h2>
     
     <div class="form-group">
       <label for="username">Username</label>
       <div class="input-group">
-        <span class="input-group-text">
+<!--         <span class="input-group-text">
           <i class="bi bi-person-fill"></i>
-        </span>
+        </span> -->
         <input 
           type="text" 
           id="username" 
@@ -29,9 +36,9 @@
         <a href="#" class="forgot-password">Password dimenticata?</a>
       </div>
       <div class="input-group">
-        <span class="input-group-text">
+<!--         <span class="input-group-text">
           <i class="bi bi-lock-fill"></i>
-        </span>
+        </span> -->
         <input 
           type="password" 
           id="password" 
@@ -73,7 +80,8 @@
     </button>
     
     <p class="register-link text-center mt-4">
-      Non hai un account? <a href="#" [class.disabled]="loading">Registrati</a>
+      Non hai un account? <a [routerLink]="['/register']" [class.disabled]="loading">Registrati</a>
     </p>
-  </form>
+    </form>
+  </div>
 </div>

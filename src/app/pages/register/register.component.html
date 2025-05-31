@@ -1,0 +1,113 @@
+<div class="register-page">
+  <video autoplay muted loop playsinline class="bg-video" #bgVideo>
+    <source src="assets/videoplayback.mp4" type="video/mp4">
+    Il tuo browser non supporta i video HTML5.
+  </video>
+  <div class="video-overlay"></div>
+  
+  <div class="register-container">
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" class="register-form">
+      <h2>Crea un account</h2>
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          [(ngModel)]="username" 
+          name="username" 
+          #usernameInput="ngModel"
+          required
+          minlength="3"
+          maxlength="20"
+          [disabled]="loading"
+          class="form-control"
+          placeholder="Scegli un username"
+          autocomplete="username"
+          autofocus>
+          <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="text-danger">
+            <small *ngIf="usernameInput.errors?.['required']">L'username è obbligatorio</small>
+            <small *ngIf="usernameInput.errors?.['minlength']">L'username deve essere di almeno 3 caratteri</small>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="email" 
+          name="email" 
+          #emailInput="ngModel"
+          required
+          email
+          [disabled]="loading"
+          class="form-control"
+          placeholder="La tua email"
+          autocomplete="email">
+          <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-danger">
+            <small *ngIf="emailInput.errors?.['required']">L'email è obbligatoria</small>
+            <small *ngIf="emailInput.errors?.['email']">Inserisci un'email valida</small>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="password" 
+          name="password" 
+          #passwordInput="ngModel"
+          required
+          minlength="6"
+          [disabled]="loading"
+          class="form-control"
+          placeholder="Crea una password"
+          autocomplete="new-password">
+          <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="text-danger">
+            <small *ngIf="passwordInput.errors?.['required']">La password è obbligatoria</small>
+            <small *ngIf="passwordInput.errors?.['minlength']">La password deve essere di almeno 6 caratteri</small>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Conferma Password</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          [(ngModel)]="confirmPassword" 
+          name="confirmPassword" 
+          #confirmPasswordInput="ngModel"
+          required
+          [disabled]="loading"
+          class="form-control"
+          placeholder="Conferma la password"
+          autocomplete="new-password">
+          <div *ngIf="confirmPasswordInput.dirty || confirmPasswordInput.touched" class="text-danger">
+            <small *ngIf="password !== confirmPassword">Le password non corrispondono</small>
+          </div>
+      </div>
+      
+      <div *ngIf="error" class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error }}
+      </div>
+      
+      <button 
+        type="submit" 
+        [disabled]="loading || !registerForm.form.valid || password !== confirmPassword" 
+        class="btn btn-primary"
+        [class.btn-loading]="loading">
+        <span *ngIf="!loading">Registrati</span>
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="visually-hidden">Caricamento...</span>
+        </div>
+      </button>
+      
+      <p class="login-link text-center mt-4">
+        Hai già un account? <a [routerLink]="['/login']" [class.disabled]="loading">Accedi</a>
+      </p>
+    </form>
+  </div>
+</div>

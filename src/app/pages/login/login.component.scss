@@ -3,23 +3,100 @@
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 
-.login-container {
+.login-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 2rem 1rem;
+  /* Assicura che la pagina occupi esattamente la viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Rimuovi i margini di default del body */
+  margin: 0;
+  padding: 0;
+  
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Usa min/max per assicurarsi che il video non superi mai le dimensioni dello schermo */
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    /* Centra il video */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* Mantiene le proporzioni */
+    object-position: center center;
+    /* Assicura che non ci siano margini */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.login-container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permette lo scroll solo del form se necessario */
+  -webkit-overflow-scrolling: touch; /* Scroll fluido su dispositivi touch */
 }
 
 .login-form {
   width: 100%;
   max-width: 420px;
+  max-height: 90vh; /* Assicura che il form non sia mai più alto dello schermo */
   padding: 2.5rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
   position: relative;
-  overflow: hidden;
+  overflow-y: auto; /* Aggiunge lo scroll solo al form se necessario */
+  -webkit-overflow-scrolling: touch; /* Scroll fluido su dispositivi touch */
+  margin: auto; /* Centra il form verticalmente e orizzontalmente */
+  
+  /* Stile della scrollbar */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
   
   &::before {
     content: '';
@@ -34,17 +111,18 @@
   h2 {
     text-align: center;
     margin: 0 0 2rem 0;
-    color: #1a1a1a;
+    color: #fff;
     font-size: 1.75rem;
     font-weight: 700;
     position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     
     &::after {
       content: '';
       display: block;
       width: 60px;
       height: 3px;
-      background: #e10600;
+      background: #fff;
       margin: 0.75rem auto 0;
       border-radius: 3px;
     }
@@ -75,11 +153,11 @@
         font-size: 1.1rem;
         font-weight: 400;
         line-height: 1.5;
-        color: #718096;
+        color: #e10600;
         text-align: center;
         white-space: nowrap;
-        background-color: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-right: none;
         border-radius: 8px 0 0 8px;
         transition: all 0.2s ease-in-out;
@@ -94,18 +172,19 @@
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
-        color: #2d3748;
-        background-color: #fff;
+        color: #333;
+        background-color: rgba(255, 255, 255, 0.9);
         background-clip: padding-box;
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-left: none;
         border-radius: 0 8px 8px 0;
         transition: all 0.2s ease-in-out;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
         &:focus {
-          border-color: #e10600;
-          box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.1);
+          /* background-color: #fff;
+          border-color: #e10600; */
+          box-shadow: 0 0 0 0.25rem rgba(225, 6, 0, 0.25);
           outline: none;
           
           + .input-group-text {
@@ -114,7 +193,7 @@
         }
         
         &::placeholder {
-          color: #a0aec0;
+          color: rgba(255, 255, 255, 0.8);
           opacity: 1;
         }
         
@@ -126,14 +205,14 @@
     }
 
     .forgot-password {
-      font-size: 0.8125rem;
-      color: #4a5568;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
-      transition: color 0.2s ease-in-out;
+      transition: color 0.2s ease;
       
       &:hover {
-        color: #e10600;
-        text-decoration: none;
+        color: #fff;
+        text-decoration: underline;
       }
     }
   }
@@ -229,27 +308,28 @@
     
     &-outline-secondary {
       width: 100%;
-      background: white;
-      color: #4a5568;
-      border: 1px solid #e2e8f0;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.5);
       padding: 0.875rem 1.5rem;
       font-size: 1rem;
       font-weight: 500;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.3s ease;
       
       i {
         font-size: 1.1rem;
         color: #e10600;
       }
       
-      &:hover, &:focus {
-        background: #f8fafc;
-        border-color: #cbd5e0;
-        color: #2d3748;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: #fff;
+        color: #fff;
+        transform: translateY(-1px);
       }
       
       &:active {
-        background: #f1f5f9;
+        transform: translateY(0);
       }
       
       &:disabled {
@@ -308,18 +388,18 @@
   }
   
   .register-link {
-    color: #4a5568;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9375rem;
     margin: 1.5rem 0 0;
     
     a {
-      color: #e10600;
+      color: #fff;
       font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s ease-in-out;
+      transition: color 0.2s ease;
       
       &:hover {
-        color: #b80500;
+        color: #e10600;
         text-decoration: underline;
       }
       
