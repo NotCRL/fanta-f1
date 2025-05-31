@@ -19,7 +19,7 @@ export class AuthService {
     private router: Router
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
-    // Initialize user from localStorage if available
+    
     if (this.isBrowser) {
       const user = this.getCurrentUser();
       if (user) {

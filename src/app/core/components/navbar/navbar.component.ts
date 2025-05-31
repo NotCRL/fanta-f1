@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Check if the current route is active
   isActive(route: string): boolean {
     if (!this.isBrowser) return false;
     return this.router.isActive(route, {

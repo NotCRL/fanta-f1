@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   background-color: #ebebeb;
-  margin-top: auto; /* Spinge il footer in basso */
+  margin-top: auto;
 }
 
 .container-main {
@@ -36,7 +36,7 @@
   }
 }
 
-// Stile per schermi piccoli
+
 @media (max-width: 576px) {
   .container-main {
     padding: 1.5rem 1rem;

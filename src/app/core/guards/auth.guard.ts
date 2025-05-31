@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    // On server-side, don't block navigation
     if (!this.isBrowser) {
       return true;
     }

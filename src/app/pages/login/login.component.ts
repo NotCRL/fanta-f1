@@ -29,14 +29,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Only check auth status on the browser
     if (this.isBrowser) {
-      // Redirect to home if already logged in
+      
       if (this.authService.isLoggedIn()) {
         this.router.navigate(['/home']);
       }
 
-      // Subscribe to auth state changes
       this.authSubscription = this.authService.currentUser.subscribe(user => {
         if (user) {
           this.router.navigate(['/home']);
