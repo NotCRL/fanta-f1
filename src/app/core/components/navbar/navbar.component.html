@@ -1,23 +1,39 @@
-<nav class="navbar main navbar-expand-lg">
-    <div class="container-fluid">
-        <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_90,q_auto/f_auto/q_auto/content/dam/fom-website/subscribe-to-f1/f1_logo_fallback"
-            class="f1-logo" href="/home">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isLoggedIn">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']" >
+      <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_90,q_auto/f_auto/q_auto/content/dam/fom-website/subscribe-to-f1/f1_logo_fallback"
+           alt="F1 Logo" class="d-inline-block align-text-top me-2" style="height: 40px;">
+      F1 Manager
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/classifica']" routerLinkActive="active">
+            Classifica
+          </a>
+        </li>
+      </ul>
+      
+      <div class="d-flex align-items-center" *ngIf="isLoggedIn">
+        <span class="text-light me-3">
+          <i class="bi bi-person-circle me-1"></i>
+          {{ user?.username || 'Utente' }}
+        </span>
+        <button class="btn btn-outline-light btn-sm" (click)="onLogout()">
+          <i class="bi bi-box-arrow-right me-1"></i> Logout
         </button>
-        <div class="collapse navbar-collapse menu">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/classifica">Classifica</a>
-                </li>
-            </ul>
-            <div *ngIf="isLogging" class="login d-flex">
-                <span> {{userData.name}} {{userData.surname}}</span>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </nav>

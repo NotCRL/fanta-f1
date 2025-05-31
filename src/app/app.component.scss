@@ -1,0 +1,36 @@
+// App container
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+// Main content area
+.main-content {
+  flex: 1 0 auto;
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: 1200px) {
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+// Ensure footer stays at the bottom
+app-footer {
+  flex-shrink: 0;
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .main-content {
+    padding: 0.75rem;
+  }
+}
