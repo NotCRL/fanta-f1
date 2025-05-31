@@ -117,7 +117,6 @@ export class AuthService {
         next: (user) => {
           if (user) {
             console.log('[AuthService] Registration successful, user:', user);
-            // Effettua automaticamente il login dopo la registrazione
             this.setCurrentUser(user);
             subscriber.next(true);
           } else {

@@ -1,0 +1,507 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@fantaf1.com",
+      "password": "admin123",
+      "role": "admin",
+      "createdAt": "2025-05-31T13:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "username": "user1",
+      "email": "user1@example.com",
+      "password": "user123",
+      "role": "user",
+      "createdAt": "2025-05-31T13:05:00.000Z"
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "Red Bull Racing",
+      "base": "Milton Keynes, Regno Unito",
+      "teamChief": "Christian Horner",
+      "championships": 6,
+      "points": 0,
+      "color": "#0600EF",
+      "logo": "assets/images/teams/redbull.png"
+    },
+    {
+      "id": 2,
+      "name": "Ferrari",
+      "base": "Maranello, Italia",
+      "teamChief": "Frédéric Vasseur",
+      "championships": 16,
+      "points": 0,
+      "color": "#DC0000",
+      "logo": "assets/images/teams/ferrari.png"
+    },
+    {
+      "id": 3,
+      "name": "Mercedes",
+      "base": "Brackley, Regno Unito",
+      "teamChief": "Toto Wolff",
+      "championships": 8,
+      "points": 0,
+      "color": "#00D2BE",
+      "logo": "assets/images/teams/mercedes.png"
+    },
+    {
+      "id": 4,
+      "name": "McLaren",
+      "base": "Woking, Regno Unito",
+      "teamChief": "Andrea Stella",
+      "championships": 8,
+      "points": 0,
+      "color": "#FF8700",
+      "logo": "assets/images/teams/mclaren.png"
+    },
+    {
+      "id": 5,
+      "name": "Aston Martin",
+      "base": "Silverstone, Regno Unito",
+      "teamChief": "Mike Krack",
+      "championships": 0,
+      "points": 0,
+      "color": "006F62",
+      "logo": "assets/images/teams/astonmartin.png"
+    },
+    {
+      "id": 6,
+      "name": "Alpine",
+      "base": "Enstone, Regno Unito",
+      "teamChief": "Bruno Famin",
+      "championships": 0,
+      "points": 0,
+      "color": "0090FF",
+      "logo": "assets/images/teams/alpine.png"
+    },
+    {
+      "id": 7,
+      "name": "Williams",
+      "base": "Grove, Regno Unito",
+      "teamChief": "James Vowles",
+      "championships": 9,
+      "points": 0,
+      "color": "005AFF",
+      "logo": "assets/images/teams/williams.png"
+    },
+    {
+      "id": 8,
+      "name": "AlphaTauri",
+      "base": "Faenza, Italia",
+      "teamChief": "Laurent Mekies",
+      "championships": 0,
+      "points": 0,
+      "color": "2B4562",
+      "logo": "assets/images/teams/alphatauri.png"
+    },
+    {
+      "id": 9,
+      "name": "Alfa Romeo",
+      "base": "Hinwil, Svizzera",
+      "teamChief": "Alessandro Alunni Bravi",
+      "championships": 0,
+      "points": 0,
+      "color": "900000",
+      "logo": "assets/images/teams/alfaromeo.png"
+    },
+    {
+      "id": 10,
+      "name": "Haas",
+      "base": "Kannapolis, Stati Uniti",
+      "teamChief": "Ayao Komatsu",
+      "championships": 0,
+      "points": 0,
+      "color": "FFFFFF",
+      "logo": "assets/images/teams/haas.png"
+    }
+  ],
+  "drivers": [
+    {
+      "id": 1,
+      "name": "Max Verstappen",
+      "teamId": 1,
+      "number": 1,
+      "country": "Netherlands",
+      "podiums": 102,
+      "points": 0,
+      "worldChampionships": 3,
+      "highestRaceFinish": "1 (x60)",
+      "dateOfBirth": "1997-09-30",
+      "placeOfBirth": "Hasselt, Belgium",
+      "image": "assets/images/drivers/verstappen.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Sergio Perez",
+      "teamId": 1,
+      "number": 11,
+      "country": "Mexico",
+      "podiums": 39,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x7)",
+      "dateOfBirth": "1990-01-26",
+      "placeOfBirth": "Guadalajara, Mexico",
+      "image": "assets/images/drivers/perez.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Charles Leclerc",
+      "teamId": 2,
+      "number": 16,
+      "country": "Monaco",
+      "podiums": 34,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x7)",
+      "dateOfBirth": "1997-10-16",
+      "placeOfBirth": "Monte Carlo, Monaco",
+      "image": "assets/images/drivers/leclerc.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Carlos Sainz",
+      "teamId": 2,
+      "number": 55,
+      "country": "Spain",
+      "podiums": 21,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x3)",
+      "dateOfBirth": "1994-09-01",
+      "placeOfBirth": "Madrid, Spain",
+      "image": "assets/images/drivers/sainz.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Lewis Hamilton",
+      "teamId": 3,
+      "number": 44,
+      "country": "United Kingdom",
+      "podiums": 198,
+      "points": 0,
+      "worldChampionships": 7,
+      "highestRaceFinish": "1 (x103)",
+      "dateOfBirth": "1985-01-07",
+      "placeOfBirth": "Stevenage, England",
+      "image": "assets/images/drivers/hamilton.jpg"
+    },
+    {
+      "id": 6,
+      "name": "George Russell",
+      "teamId": 3,
+      "number": 63,
+      "country": "United Kingdom",
+      "podiums": 11,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x1)",
+      "dateOfBirth": "1998-02-15",
+      "placeOfBirth": "King's Lynn, England",
+      "image": "assets/images/drivers/russell.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Lando Norris",
+      "teamId": 4,
+      "number": 4,
+      "country": "United Kingdom",
+      "podiums": 15,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x1)",
+      "dateOfBirth": "1999-11-13",
+      "placeOfBirth": "Bristol, England",
+      "image": "assets/images/drivers/norris.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Oscar Piastri",
+      "teamId": 4,
+      "number": 81,
+      "country": "Australia",
+      "podiums": 4,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "2 (x2)",
+      "dateOfBirth": "2001-04-06",
+      "placeOfBirth": "Melbourne, Australia",
+      "image": "assets/images/drivers/piastri.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Fernando Alonso",
+      "teamId": 5,
+      "number": 14,
+      "country": "Spain",
+      "podiums": 106,
+      "points": 0,
+      "worldChampionships": 2,
+      "highestRaceFinish": "1 (x32)",
+      "dateOfBirth": "1981-07-29",
+      "placeOfBirth": "Oviedo, Spain",
+      "image": "assets/images/drivers/alonso.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Lance Stroll",
+      "teamId": 5,
+      "number": 18,
+      "country": "Canada",
+      "podiums": 3,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "3 (x3)",
+      "dateOfBirth": "1998-10-29",
+      "placeOfBirth": "Montreal, Canada",
+      "image": "assets/images/drivers/stroll.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Pierre Gasly",
+      "teamId": 6,
+      "number": 10,
+      "country": "France",
+      "podiums": 4,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x1)",
+      "dateOfBirth": "1996-02-07",
+      "placeOfBirth": "Rouen, France",
+      "image": "assets/images/drivers/gasly.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Esteban Ocon",
+      "teamId": 6,
+      "number": 31,
+      "country": "France",
+      "podiums": 3,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x1)",
+      "dateOfBirth": "1996-09-17",
+      "placeOfBirth": "Évreux, France",
+      "image": "assets/images/drivers/ocon.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Alexander Albon",
+      "teamId": 7,
+      "number": 23,
+      "country": "Thailand",
+      "podiums": 2,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "3 (x2)",
+      "dateOfBirth": "1996-03-23",
+      "placeOfBirth": "London, England",
+      "image": "assets/images/drivers/albon.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Logan Sargeant",
+      "teamId": 7,
+      "number": 2,
+      "country": "United States",
+      "podiums": 0,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "10 (x1)",
+      "dateOfBirth": "2000-12-31",
+      "placeOfBirth": "Fort Lauderdale, FL, USA",
+      "image": "assets/images/drivers/sargeant.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Yuki Tsunoda",
+      "teamId": 8,
+      "number": 22,
+      "country": "Japan",
+      "podiums": 0,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "4 (x1)",
+      "dateOfBirth": "2000-05-11",
+      "placeOfBirth": "Sagamihara, Japan",
+      "image": "assets/images/drivers/tsunoda.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Daniel Ricciardo",
+      "teamId": 8,
+      "number": 3,
+      "country": "Australia",
+      "podiums": 32,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x8)",
+      "dateOfBirth": "1989-07-01",
+      "placeOfBirth": "Perth, Australia",
+      "image": "assets/images/drivers/ricciardo.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Valtteri Bottas",
+      "teamId": 9,
+      "number": 77,
+      "country": "Finland",
+      "podiums": 67,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "1 (x10)",
+      "dateOfBirth": "1989-08-28",
+      "placeOfBirth": "Nastola, Finland",
+      "image": "assets/images/drivers/bottas.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Zhou Guanyu",
+      "teamId": 9,
+      "number": 24,
+      "country": "China",
+      "podiums": 0,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "8 (x1)",
+      "dateOfBirth": "1999-05-30",
+      "placeOfBirth": "Shanghai, China",
+      "image": "assets/images/drivers/zhou.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Kevin Magnussen",
+      "teamId": 10,
+      "number": 20,
+      "country": "Denmark",
+      "podiums": 1,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "2 (x1)",
+      "dateOfBirth": "1992-10-05",
+      "placeOfBirth": "Roskilde, Denmark",
+      "image": "assets/images/drivers/magnussen.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Nico Hülkenberg",
+      "teamId": 10,
+      "number": 27,
+      "country": "Germany",
+      "podiums": 0,
+      "points": 0,
+      "worldChampionships": 0,
+      "highestRaceFinish": "4 (x1)",
+      "dateOfBirth": "1987-08-19",
+      "placeOfBirth": "Emmerich am Rhein, Germany",
+      "image": "assets/images/drivers/hulkenberg.jpg"
+    }
+  ],
+  "races": [
+    {
+      "id": 1,
+      "name": "Bahrain Grand Prix",
+      "circuit": "Bahrain International Circuit",
+      "date": "2025-03-02",
+      "completed": false,
+      "sprintRace": false
+    },
+    {
+      "id": 2,
+      "name": "Saudi Arabian Grand Prix",
+      "circuit": "Jeddah Corniche Circuit",
+      "date": "2025-03-09",
+      "completed": false,
+      "sprintRace": false
+    },
+    {
+      "id": 3,
+      "name": "Australian Grand Prix",
+      "circuit": "Albert Park Circuit",
+      "date": "2025-03-23",
+      "completed": false,
+      "sprintRace": false
+    }
+  ],
+  "driverStandings": [
+    {
+      "id": 1,
+      "position": 1,
+      "points": 0,
+      "wins": 0,
+      "Driver": {
+        "driverId": "verstappen",
+        "permanentNumber": "1",
+        "code": "VER",
+        "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+        "givenName": "Max",
+        "familyName": "Verstappen",
+        "dateOfBirth": "1997-09-30",
+        "nationality": "Dutch"
+      },
+      "Constructors": [
+        {
+          "constructorId": "red_bull",
+          "url": "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+          "name": "Red Bull",
+          "nationality": "Austrian"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "position": 2,
+      "points": 0,
+      "wins": 0,
+      "Driver": {
+        "driverId": "leclerc",
+        "permanentNumber": "16",
+        "code": "LEC",
+        "url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
+        "givenName": "Charles",
+        "familyName": "Leclerc",
+        "dateOfBirth": "1997-10-16",
+        "nationality": "Monegasque"
+      },
+      "Constructors": [
+        {
+          "constructorId": "ferrari",
+          "url": "http://en.wikipedia.org/wiki/Scuderia_Ferrari",
+          "name": "Ferrari",
+          "nationality": "Italian"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "position": 3,
+      "points": 0,
+      "wins": 0,
+      "Driver": {
+        "driverId": "perez",
+        "permanentNumber": "11",
+        "code": "PER",
+        "url": "http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez",
+        "givenName": "Sergio",
+        "familyName": "Pérez",
+        "dateOfBirth": "1990-01-26",
+        "nationality": "Mexican"
+      },
+      "Constructors": [
+        {
+          "constructorId": "red_bull",
+          "url": "http://en.wikipedia.org/wiki/Red_Bull_Racing",
+          "name": "Red Bull",
+          "nationality": "Austrian"
+        }
+      ]
+    }
+  ],
+  "fantasyTeams": [],
+  "fantasyTeamDrivers": [],
+  "fantasyTeamResults": []
+}
